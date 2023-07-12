@@ -2,6 +2,7 @@ package DAO;
 
 import DBConnection.DBConnection;
 import DTO.TeamRespDTO;
+import  DTO.TeamPlayerListDTO;
 import model.Team;
 
 
@@ -99,26 +100,63 @@ public class TeamDao {
 
         return team;
     }
-    public TeamRespDTO findByNamewithStadium(){
+    public TeamRespDTO findByAllTeamwithStadium(){
         TeamRespDTO dto = null;
-        String sql="select team.*, stadium.s_name stadiumname\n" +
+        String sql="select team.*, stadium.s_name \n" +
                 " from team team left outer join stadium stadium on team.stadium_id = stadium.s_id\n";
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
-            if(rs.next()){
+            while (rs.next()){
                 dto = new TeamRespDTO(
                         rs.getInt("t_id"),
                         rs.getInt("stadium_id"),
                         rs.getString("t_name"),
                         rs.getString("s_name")
-
-                );
+                ); System.out.println(dto);
             }
+
         }catch (Exception e){
             e.printStackTrace();
         }
-
         return dto;
     }
+
+
+    public TeamPlayerListDTO findTeamplayer(Integer tId){
+        TeamPlayerListDTO dto = null;
+        String sql="select team.*,player.p_name,player.position\n" +
+                "from team team left outer join player player on team.t_id = player.team_id\n" +
+                "where team_id =?;";
+        try {
+            PreparedStatement pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, tId);
+            ResultSet rs = pstmt.executeQuery();
+           while (rs.next()){
+                dto = new TeamPlayerListDTO(
+                        rs.getInt("t_id"),
+                        rs.getString("t_name"),
+                        rs.getString("p_name"),
+                        rs.getString("position")
+                ); System.out.println(dto);
+            }
+            System.out.println(dto);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return dto;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

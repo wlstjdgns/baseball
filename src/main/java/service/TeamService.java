@@ -1,5 +1,7 @@
 package service;
 import DAO.TeamDao;
+import DTO.TeamRespDTO;
+import DTO.TeamPlayerListDTO;
 
 import java.sql.Connection;
 
@@ -16,11 +18,17 @@ public class TeamService {
         System.out.println("팀 등록 성공");
     }
 
-    public void TeamFullList(){
-        teamDao.findByNamewithStadium();
-        System.out.println(teamDao.findByNamewithStadium());
+    public TeamRespDTO FindAllTeam() {
+        teamDao.findByAllTeamwithStadium();
+        return null;
     }
 
+public TeamPlayerListDTO TeamPlayerList(Integer tId){
+        teamDao.findTeamplayer(tId);
+        return  null;
+
+
+}
 
 
 

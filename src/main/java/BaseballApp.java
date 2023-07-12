@@ -3,6 +3,7 @@ import DAO.PlayerDao;
 import DAO.StadiumDao;
 import DAO.TeamDao;
 import DBConnection.DBConnection;
+import DTO.TeamRespDTO;
 import model.Player;
 import model.Stadium;
 import model.Team;
@@ -56,7 +57,7 @@ public class BaseballApp {
 //        Player player = playerDao.findById(30);
 //        System.out.println(player.toString());
 
-
+        //TeamRespDTO dto = teamService.findAllTeam();
 
       //  playerService.PlayerRegistration(7,"운동하자","우견수");
        //stadiumService.StadiumRegistration("부산");
@@ -64,6 +65,9 @@ public class BaseballApp {
         //stadiumService.StadiumList();
 
        // teamService.TeamRegistration(6,"우리팀");
+
+       // teamService.TeamPlayerList(2);
+
 
 
 
