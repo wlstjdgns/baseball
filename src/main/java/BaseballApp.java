@@ -94,7 +94,13 @@ public class BaseballApp {
         }
 
 
-
+        /*다시*/
+        //=========팀별 선수 목록=================
+        if(result.equals("팀별 선수 목록")) {
+            System.out.println("팀 번호: ");
+            Integer tId = scanner.nextInt();
+            teamService.getTeamPlayerList(paramMap);
+        }
 
 
         //==============선수 퇴출 등록==================
@@ -127,13 +133,7 @@ public class BaseballApp {
 
 
 
-        /*다시*/
-        //=========팀별 선수 목록=================
-        if(result.equals("팀별 선수 목록")) {
-            System.out.println("팀 번호: ");
-            Integer tId = scanner.nextInt();
-            teamService.getTeamPlayerList(paramMap);
-        }
+
 
 
     }
