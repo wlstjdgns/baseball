@@ -13,6 +13,7 @@ import java.util.Map;
 public class StadiumDao {
     private Connection connection = DBConnection.getInstance();
 
+    //야구장 등록
     public void insert (Map<String, Object> paramMap){
         String sql = "insert into stadium( s_name, created_at) values( ?, now())";
         try {
@@ -24,6 +25,7 @@ public class StadiumDao {
         }
     }
 
+    //야구장 삭제
     public void delete(Integer sId){
         String sql = "delete from stadium where s_id = ?";
         try {
@@ -35,6 +37,7 @@ public class StadiumDao {
         }
     }
 
+    //야구장 없댓
     public void update(String sName , Integer sId){
         String sql="update stadium set s_name = ? where s_id =  ?";
         try {
@@ -49,6 +52,7 @@ public class StadiumDao {
     }
 
 
+    //야구장 전체 목록
     public List<Stadium> findAll(){
         List<Stadium> stadiumsList = new ArrayList<>();
         String sql = "select * from stadium order by s_id";
@@ -73,6 +77,7 @@ public class StadiumDao {
     }
 
 
+    //아이디로 야구장 찾기
     public Stadium findById(Integer sId){
         Stadium stadium = null;
         String sql = "select * from stadium where id = ?";

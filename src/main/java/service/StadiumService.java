@@ -12,7 +12,7 @@ public class StadiumService {
     }
     StadiumDao stadiumDao = new StadiumDao();
 
-
+    //야구장 등록
     public void StadiumRegistration(Map<String, Object> paramMap) {
 
         String sName = (String) paramMap.get("sName");
@@ -20,7 +20,7 @@ public class StadiumService {
         System.out.println("야구장 등록 완료");
     }
 
-
+    //야구장 목록
     public  void  StadiumList(){
        stadiumDao.findAll();
         System.out.println(stadiumDao.findAll());

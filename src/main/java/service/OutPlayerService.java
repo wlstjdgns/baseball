@@ -20,9 +20,8 @@ public class OutPlayerService {
 
     OutPlayDao outPlayDao = new OutPlayDao();
 
-    /**
-     * 퇴사자등록 서비스
-     * */
+
+     // 퇴사자등록 서비스
     public void registOutPlayer(Map<String, Object> paramMap) {
 
 
@@ -50,9 +49,8 @@ public class OutPlayerService {
         System.out.println("성공");
     }
 
-    /**
-     * 퇴사자목록 서비스
-     */
+
+     // 퇴사자목록 서비스
     public void outPlayerList(){
         //1.퇴사자목록가져오기
         List< OutPlayerDTO> outPlayerList = outPlayDao.findAll();

@@ -19,7 +19,7 @@ public class PlayerService {
 
     PlayerDao playerDao = new PlayerDao();
 
-
+    //선수 등록
     public void registPlayer(Map<String, Object> paramMap) {
 
         try {
@@ -38,12 +38,12 @@ public class PlayerService {
             }
         }
         //2. 이미 있으면 있다고 알림! 없으면 넣어야지.
-
         catch (Exception e) {
             e.printStackTrace();
         }
 
     }
+        //포지션별 팀 선수
         public PositionRespDTO positionRespTPlayer(){
             playerDao.findPositionTPlayer();
             return null;

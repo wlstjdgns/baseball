@@ -17,6 +17,7 @@ import java.util.Map;
 public class TeamDao {
     private Connection connection = DBConnection.getInstance();
 
+    //팀 등록
     public void insert(Map<String, Object> paramMap){
         String sql = "insert into team(stadium_id, t_name, created_at) values(?, ?, now())";
         try {
@@ -29,6 +30,7 @@ public class TeamDao {
         }
     }
 
+    //팀 삭제
     public void delete(Integer tId){
         String sql = "delete from team where t_id = ?";
         try {
@@ -40,7 +42,7 @@ public class TeamDao {
         }
     }
 
-
+    //팀 업댓
     public void update(String tName , Integer tId){
         String sql="update team set t_name = ? where t_id =  ?";
         try {
@@ -54,6 +56,7 @@ public class TeamDao {
         }
     }
 
+    //팀 목록
     public List<Team> findAll(){
         List<Team> teamsList = new ArrayList<>();
         String sql = "select * from team order by t_id";
@@ -79,6 +82,7 @@ public class TeamDao {
     }
 
 
+    //팀 아이디로 찾기
     public Team findById(Integer tId){
         Team team = null;
         String sql = "select * from team where t_id = ?";
@@ -102,6 +106,7 @@ public class TeamDao {
 
         return team;
     }
+    //팀과 야구장
     public TeamRespDTO findByAllTeamwithStadium(){
         TeamRespDTO dto = null;
         String sql="select team.*, stadium.s_name \n" +
@@ -125,6 +130,7 @@ public class TeamDao {
     }
 
 
+    //팀과 선수
     public List<TeamPlayerListDTO> findTeamplayer(Map<String, Object> paramMap){
 
         List<TeamPlayerListDTO> teamPlayerListDTOList = new ArrayList<>();

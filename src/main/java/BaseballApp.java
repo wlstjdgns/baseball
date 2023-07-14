@@ -131,11 +131,6 @@ public class BaseballApp {
             playerService.positionRespTPlayer();
         }
 
-
-
-
-
-
     }
 
 }

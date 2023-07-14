@@ -17,6 +17,7 @@ import java.util.Map;
 public class PlayerDao {
     Connection connection = DBConnection.getInstance();
 
+    //선수 등록
     public void insert(Map<String, Object> paramMap) {
 
         String sql = "insert into player(team_id, p_name, position, created_at) values(?, ?, ?, now())";
@@ -31,6 +32,7 @@ public class PlayerDao {
         }
     }
 
+    //선수 삭제
     public void delete(Integer pId) {
         String sql = "delete from player where p_id = ?";
         try {
@@ -42,6 +44,7 @@ public class PlayerDao {
         }
     }
 
+    //선수 업댓
     public void update(String position, Integer pId) {
         String sql = "update player set position = ? where p_id =  ?";
         try {
@@ -55,6 +58,7 @@ public class PlayerDao {
         }
     }
 
+    //선수 전체 목록
     public List<Player> findAll() {
         List<Player> playersList = new ArrayList<>();
         String sql = "select * from player order by team_id";
@@ -81,6 +85,7 @@ public class PlayerDao {
     }
 
 
+    //선수 아이디로 찾기
     public Player findById(Integer pId) {
         Player player = null;
         String sql = "select * from player where p_id = ?";
@@ -107,6 +112,7 @@ public class PlayerDao {
     }
 
 
+    //포지션별 팀 선수 목록
     public PositionRespDTO findPositionTPlayer() {
         PositionRespDTO dto = null;
         String sql = "select\n" +

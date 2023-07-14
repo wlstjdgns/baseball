@@ -16,8 +16,9 @@ import java.util.Objects;
 public class OutPlayDao {
     private Connection connection = DBConnection.getInstance();
 
+
+    //퇴출선수 삽입
     public void insert(Map<String, Object> paramMap){
-        //일단 이그노아 처리 > 추후 존재할경우 이미 퇴사처리된 놈이다라는걸 표시해주삼
         String sql = "insert ignore into out_player(player_id, reason, created_at) values(?, ?, now())";
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
@@ -30,6 +31,7 @@ public class OutPlayDao {
         }
     }
 
+    //퇴출선수 업댓
     public void update(Map<String, Object> paramMap){
         String sql="update player set team_id = ? where p_id =  ?";
         try {
@@ -43,6 +45,7 @@ public class OutPlayDao {
         }
     }
 
+    //퇴출선수 목록
     public List<OutPlayerDTO> findAll(){
         List<OutPlayerDTO> outPlayersList = new ArrayList<>();
         String sql = "select a.p_id as id, a.p_name as name, a.position as position, " +
