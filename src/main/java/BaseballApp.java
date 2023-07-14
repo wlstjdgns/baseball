@@ -94,7 +94,7 @@ public class BaseballApp {
         }
 
 
-        /*다시*/
+        /*다시- 오류 잡아야 함*/
         //=========팀별 선수 목록=================
         if(result.equals("팀별 선수 목록")) {
             System.out.println("팀 번호: ");
@@ -119,7 +119,7 @@ public class BaseballApp {
             //퇴출자등록 서비스
         }
 
-        //==============선수 퇴출 목록=============
+        //==============선수 퇴출 목록(이유가 안나옴 - 다시 수정해야 함 )=============
         if (result.equals("퇴출목록")) {
             outPlayerService.outPlayerList(); //퇴출자등록 서비스
         }
