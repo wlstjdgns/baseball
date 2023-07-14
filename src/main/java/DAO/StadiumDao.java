@@ -8,15 +8,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class StadiumDao {
     private Connection connection = DBConnection.getInstance();
 
-    public void insert (String sName){
+    public void insert (Map<String, Object> paramMap){
         String sql = "insert into stadium( s_name, created_at) values( ?, now())";
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1,sName);
+            pstmt.setString(1, (String) paramMap.get("sName"));
             pstmt.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();

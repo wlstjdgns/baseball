@@ -3,6 +3,7 @@ import DAO.StadiumDao;
 import model.Stadium;
 
 import java.sql.Connection;
+import java.util.Map;
 
 public class StadiumService {
     private Connection connection;
@@ -12,8 +13,10 @@ public class StadiumService {
     StadiumDao stadiumDao = new StadiumDao();
 
 
-    public void StadiumRegistration(String sName) {
-        stadiumDao.insert(sName);
+    public void StadiumRegistration(Map<String, Object> paramMap) {
+
+        String sName = (String) paramMap.get("sName");
+        stadiumDao.insert(paramMap);
         System.out.println("야구장 등록 완료");
     }
 

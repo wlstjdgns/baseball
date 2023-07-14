@@ -1,9 +1,12 @@
 package service;
 import DAO.TeamDao;
+import DTO.OutPlayerDTO;
 import DTO.TeamRespDTO;
 import DTO.TeamPlayerListDTO;
-
 import java.sql.Connection;
+import java.util.List;
+import java.util.Map;
+
 
 public class TeamService {
     private Connection connection;
@@ -13,8 +16,10 @@ public class TeamService {
 
     TeamDao teamDao = new TeamDao();
 
-    public  void TeamRegistration(Integer stadiumId, String tName){
-        teamDao.insert(stadiumId, tName);
+    public  void TeamRegistration(Map<String, Object> paramMap){
+        Integer stadiumId = (Integer) paramMap.get("stadiumId");
+        String tName = (String) paramMap.get("tName");
+        teamDao.insert(paramMap);
         System.out.println("팀 등록 성공");
     }
 
@@ -23,8 +28,12 @@ public class TeamService {
         return null;
     }
 
-public TeamPlayerListDTO TeamPlayerList(Integer tId){
-        teamDao.findTeamplayer(tId);
+public TeamPlayerListDTO getTeamPlayerList(Map<String, Object> paramMap){
+    Integer tId = (Integer) paramMap.get("tId");
+    List< TeamPlayerListDTO> teamPlayerListDTOList = teamDao.findTeamplayer(paramMap);
+    for (TeamPlayerListDTO teamPlayerListDTO : teamPlayerListDTOList){
+        System.out.println(teamPlayerListDTO.toString());
+    }
         return  null;
 
 

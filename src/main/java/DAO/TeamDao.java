@@ -1,6 +1,7 @@
 package DAO;
 
 import DBConnection.DBConnection;
+import DTO.OutPlayerDTO;
 import DTO.TeamRespDTO;
 import  DTO.TeamPlayerListDTO;
 import model.Team;
@@ -11,16 +12,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class TeamDao {
     private Connection connection = DBConnection.getInstance();
 
-    public void insert(Integer stadiumId, String tName){
+    public void insert(Map<String, Object> paramMap){
         String sql = "insert into team(stadium_id, t_name, created_at) values(?, ?, now())";
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, stadiumId);
-            pstmt.setString(2,tName);
+            pstmt.setInt(1, (Integer) paramMap.get("stadiumId"));
+            pstmt.setString(2,(String) paramMap.get("tName"));
             pstmt.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();
@@ -123,29 +125,31 @@ public class TeamDao {
     }
 
 
-    public TeamPlayerListDTO findTeamplayer(Integer tId){
-        TeamPlayerListDTO dto = null;
+    public List<TeamPlayerListDTO> findTeamplayer(Map<String, Object> paramMap){
+
+        List<TeamPlayerListDTO> teamPlayerListDTOList = new ArrayList<>();
         String sql="select team.*,player.p_name,player.position\n" +
                 "from team team left outer join player player on team.t_id = player.team_id\n" +
-                "where team_id =?;";
+                "where team_id =?";
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, tId);
+            pstmt.setInt(1, (Integer) paramMap.get("tId"));
             ResultSet rs = pstmt.executeQuery();
            while (rs.next()){
-                dto = new TeamPlayerListDTO(
+               TeamPlayerListDTO  teamPlayerListDTO = new TeamPlayerListDTO(
                         rs.getInt("t_id"),
                         rs.getString("t_name"),
                         rs.getString("p_name"),
                         rs.getString("position")
-                ); System.out.println(dto);
+                        );
+               teamPlayerListDTOList.add(teamPlayerListDTO);
             }
-            System.out.println(dto);
+           // System.out.println(teamPlayerListDTOList);
 
         }catch (Exception e){
             e.printStackTrace();
         }
-        return dto;
+        return teamPlayerListDTOList;
     }
 
 
